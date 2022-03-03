@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style>
+        body
+        {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <script src="libs/p5..min.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
+    <script src="tile.js"></script>
+    <script src="tile_array.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<body>
+
+    <div id="settings" style="padding-left: 10px;">
+        
+        <div>
+            <label for="tile_size" style="display: inline-block;">Tile Height: </label>
+            <input id="tile_size" type="range" min="70" max="350" style="display: inline-block;">
+
+            <p id="tile_size_value" style="display: inline-block;"></p>
+        </div>
+
+        <div>
+            <label for="enlarge" style="display: inline-block;">Enlarge canvas by: </label>
+            <input id="enlarge" type="range" min="0" max="3" value="0" style="display: inline-block;">
+
+            <label for="enlarge_decimal" style="display: inline-block;"></label>
+            <input id="enlarge_decimal"  type="range" min="0" max="1000" value="300" style="display: inline-block;">
+
+            <p id="enlarge_value" style="display: inline-block;"></p>
+        </div>
+
+        <label for="randomize_tiles" style="display: inline-block; padding-top: 10px;">Tile randomizing:</label>
+        <input id="randomize_tiles" type="checkbox" style="display: inline-block;">
+
+        <div id="et_possition" style="padding-top: 10px;">
+            <div>
+                <label for="et_column" style="display: inline-block;">Empty tile column: </label>
+                <input id="et_column"  type="range" min="1" value="1" style="display: inline-block;">
+
+                <p id="et_column_value" style="display: inline-block;"></p>
+            </div>
+
+            <div>
+                <label for="et_row" style="display: inline-block;">Empty tile row: </label>
+                <input id="et_row" type="range" min="1" value="1" style="display: inline-block;">
+
+                <p id="et_row_value" style="display: inline-block;"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <main>
+    </main>
+</body>
+</html>
