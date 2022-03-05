@@ -4,22 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider Puzzle</title>
-    
+    <title>p5.js example</title>
+    <style>
+        body
+        {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
     <script src="libs/p5.min.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
     <script src="tile.js"></script>
     <script src="tile_array.js"></script>
     <script src="sketch.js"></script>
-    
 </head>
 
 <body>
 
-    <div id="settings" style="padding-left: 10px;">
-        
+    <div id="settings" style="padding-left: 10px;">        
         <div>
             <label for="tile_size" style="display: inline-block;">Tile Height: </label>
-            <input id="tile_size" type="range" min="70" max="350" style="display: inline-block;">
+            <input id="tile_size" type="range" min="30" max="350" value="70" style="display: inline-block;">
 
             <p id="tile_size_value" style="display: inline-block;"></p>
         </div>
@@ -53,9 +58,10 @@
             </div>
         </div>
 
+        <div id="image_file_input" style="padding-top: 20px;"></div>
+        <p id="or_img" style="font-size: 30px; font-weight: bold; padding-top: 10px;margin: 0px;">OR</p>
     </div>
 
-    <br>
     <main>
     </main>
 </body>
