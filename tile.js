@@ -23,23 +23,23 @@ class tile
 
     update()
     {
-        let direction = p5.Vector.sub(this.newLocation, this.location)
+        let direction = p5.Vector.sub(this.newLocation, this.location);
 
         if (direction.mag() != 0)
         {
-            if (direction.mag() < this.tileSize / 50)
+            let h = (direction.heading());
+
+            console.log(h);
+            
+            this.velocity.setHeading(h);
+            this.location.add(this.velocity);
+
+            direction = p5.Vector.sub(this.newLocation, this.location);
+
+            if (direction.mag() < this.tileSize / 50 || Math.round(direction.heading(), 2) == Math.round(h + PI, 2))
             {
                 this.location = this.newLocation.copy();
                 this.tile_array.emptyTile.location = this.tile_array.emptyTile.newLocation.copy();
-            }
-            else
-            {
-                let h = (direction.heading());
-
-                console.log(h);
-                
-                this.velocity.setHeading(h);
-                this.location.add(this.velocity);
             }
             
             this.isMoving = true;
