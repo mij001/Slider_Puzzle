@@ -1,5 +1,6 @@
 let tiles_array;
 let img;
+let or_img;
 
 let isImgLoaded = false;
 
@@ -13,11 +14,15 @@ let randomizeTheTiles;
 let etRowSlider;
 let etColumnSlider;
 
-let tileHeight = 100; // Default is 100
+let tileHeight = 70; // Default is 100
 let canvasEnlargeCoefficient = .3; // Default is .3
 
 function setup()
-{   
+{
+    imgFileInput = createFileInput(whenImageGiven, false);
+    imgFileInput.parent("image_file_input");
+    or_img = select("#or_img");
+
     tileHeightSlider = select("#tile_size");
     tileHeightSliderValue = select("#tile_size_value");
 
@@ -33,11 +38,12 @@ function setup()
     select("#et_possition").hide();
 
     let c = createCanvas(500, 500);
+    c.style("padding-top", "10px")
     background(255, 247, 0);
-    c.drop(whenImageDropped);
+    c.drop(whenImageGiven);
 }
 
-function whenImageDropped(file)
+function whenImageGiven(file)
 {
     if (file.type === 'image')
     {
@@ -54,6 +60,7 @@ function draw()
     canvasEnlargeCoefficientSliderValue.html("&nbsp&nbsp" + (canvasEnlargeCoefficientSlider.value() + canvasEnlargeCoefficientSlider_decimal.value() / 1000) + "&nbsptimes");
     select("#et_row_value").html("&nbsp&nbsp" + etRowSlider.value());
     select("#et_column_value").html("&nbsp&nbsp" + etColumnSlider.value());
+    or_img.hide();
 
     if (!tiles_array && isImgLoaded)
     {
@@ -130,6 +137,7 @@ function draw()
         textSize(50);
         textAlign(CENTER, CENTER);
         text("Drop an image to make the puzzle.", 0, 0, height, width * .94);
+        or_img.show();
     }
 }
 
