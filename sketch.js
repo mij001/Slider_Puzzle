@@ -56,6 +56,15 @@ function setup()
     c.style("padding-top", "10px")
     background(255, 247, 0);
     c.drop(whenImageGiven);
+
+    select("#mustang69").mousePressed
+    (
+        function ()
+        {
+            img = loadImage("./images/mustang69.jpg", createCanvasForImage);
+            select("#default_image").hide();
+        }
+    );
 }
 
 function whenImageGiven(file)
@@ -66,6 +75,7 @@ function whenImageGiven(file)
         tiles_array = null;
 
         img = loadImage(file.data, createCanvasForImage);
+        select("#default_image").hide();
     }
 }
 
@@ -167,7 +177,7 @@ function mousePressed()
     {
         console.clear();
 
-        if (!tiles_array.isMoving() && !isShowSolvedOver && !showSolvedCheckbox.checked())
+        if (!tiles_array.isMoving() && !isShowSolvedOver && !showSolvedCheckbox.checked() && !keyIsDown(32))
         {
             tiles_array.swap();
         }

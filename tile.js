@@ -67,7 +67,7 @@ class tile
                 noStroke();
             }
             
-            if (!tilesAreMoving && (isShowSolvedOver && mouseIsPressed) || showSolvedCheckbox.checked())
+            if (!tilesAreMoving && (isShowSolvedOver && mouseIsPressed) || keyIsDown(32) || showSolvedCheckbox.checked())
             {
                 if (this.initLocation.x == this.location.x && this.initLocation.y == this.location.y)
                 {
