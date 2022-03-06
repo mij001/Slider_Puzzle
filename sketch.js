@@ -52,7 +52,7 @@ function setup()
 
     select("#et_possition").hide();
 
-    let c = createCanvas(500, 500);
+    let c = createCanvas(450, 450);
     c.style("padding-top", "10px")
     background(255, 247, 0);
     c.drop(whenImageGiven);
