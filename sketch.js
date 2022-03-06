@@ -164,7 +164,7 @@ function draw()
         tileHeight = tileHeightSlider.value();
 	    canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
 	
-        textSize(50);
+        textSize(45);
         textAlign(CENTER, CENTER);
         text("Drop an image to make the puzzle.", 0, 0, height, width * .94);
         or_img.show();
