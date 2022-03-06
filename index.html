@@ -13,6 +13,7 @@
         }
     </style>
     <script src="libs/p5.min.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
     <script src="tile.js"></script>
     <script src="tile_array.js"></script>
     <script src="sketch.js"></script>
@@ -38,8 +39,15 @@
             <p id="enlarge_value" style="display: inline-block;"></p>
         </div>
 
-        <label for="randomize_tiles" style="display: inline-block; padding-top: 10px;">Tile randomizing:</label>
-        <input id="randomize_tiles" type="checkbox" style="display: inline-block;">
+        <div style="display: block; padding-top: 10px;">
+            <label for="randomize_tiles">Tile randomizing:</label>
+            <input id="randomize_tiles" type="checkbox">
+        </div>
+        
+        <div style="display: block; padding-top: 24px;">
+            <label for="show_strokes">Show strokes:</label>
+            <input type="checkbox" id="show_strokes" checked>
+        </div>
 
         <div id="et_possition" style="padding-top: 10px;">
             <div>
@@ -55,6 +63,11 @@
 
                 <p id="et_row_value" style="display: inline-block;"></p>
             </div>
+        </div>
+
+        <div style="margin-top: 10px; display: block;">
+            <input type="button" id="show_solved" value="Show solved">
+            <input type="checkbox" id="show_solves_checkbox">
         </div>
 
         <div id="image_file_input" style="padding-top: 20px;"></div>

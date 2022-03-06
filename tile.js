@@ -27,6 +27,7 @@ class tile
 
         if (direction.mag() != 0)
         {
+            this.isMoving = true;
             let h = (direction.heading());
 
             console.log(h);
@@ -41,8 +42,6 @@ class tile
                 this.location = this.newLocation.copy();
                 this.tile_array.emptyTile.location = this.tile_array.emptyTile.newLocation.copy();
             }
-            
-            this.isMoving = true;
         }
         else
         {
@@ -52,12 +51,43 @@ class tile
 
     display()
     {
+        let multiplier = this.tileSize / canvasEnlargeCoefficient;
+        let imageInitLocation = this.initLocation.copy().div(canvasEnlargeCoefficient);
+
+        noFill();
         if (this.isSolid)
         {
-            let imageInitLocation = this.initLocation.copy().div(canvasEnlargeCoefficient)
-            let multiplier = this.tileSize / canvasEnlargeCoefficient;
-
-            image(this.puzzleImage,this.location.x, this.location.y, this.tileSize, this.tileSize, imageInitLocation.x, imageInitLocation.y, multiplier, multiplier);
+            if (showStrokes.checked())
+            {
+                stroke(0);
+                strokeWeight(2);
+            }
+            else
+            {
+                noStroke();
+            }
+            
+            if (!tilesAreMoving && (isShowSolvedOver && mouseIsPressed) || showSolvedCheckbox.checked())
+            {
+                if (this.initLocation.x == this.location.x && this.initLocation.y == this.location.y)
+                {
+                    push();
+                    image(this.puzzleImage, this.initLocation.x, this.initLocation.y, this.tileSize, this.tileSize, imageInitLocation.x, imageInitLocation.y, multiplier, multiplier);
+                    fill(0, 255, 0, 100);
+                    rect(this.initLocation.x, this.initLocation.y, this.tileSize, this.tileSize);
+                    pop();
+                }
+                else
+                {
+                    image(this.puzzleImage, this.initLocation.x, this.initLocation.y, this.tileSize, this.tileSize, imageInitLocation.x, imageInitLocation.y, multiplier, multiplier);
+                    rect(this.initLocation.x, this.initLocation.y, this.tileSize, this.tileSize);
+                }
+            }
+            else
+            {
+                image(this.puzzleImage, this.location.x, this.location.y, this.tileSize, this.tileSize, imageInitLocation.x, imageInitLocation.y, multiplier, multiplier);
+                rect(this.location.x, this.location.y, this.tileSize, this.tileSize);
+            }
         }
     }
 

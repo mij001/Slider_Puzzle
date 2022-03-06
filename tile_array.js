@@ -59,6 +59,7 @@ class tileArray
             if (this.tiles[i] !== this.emptyTile)
             {
                 this.tiles[i].update();
+                tilesAreMoving = this.isMoving();
                 this.tiles[i].display();
             }
         }
@@ -71,6 +72,10 @@ class tileArray
         for (let t of this.tiles)
         {
             flag = flag || t.isMoving;
+            if (flag)
+            {
+                break;
+            }
         }
 
         return flag;

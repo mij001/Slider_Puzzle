@@ -3,6 +3,8 @@ let img;
 let or_img;
 
 let isImgLoaded = false;
+let tilesAreMoving = false;
+let isShowSolvedOver;
 
 let tileHeightSlider;
 
@@ -10,6 +12,11 @@ let canvasEnlargeCoefficientSlider;
 let canvasEnlargeCoefficientSlider_decimal;
 
 let randomizeTheTiles;
+
+let showSolved;
+let showSolvedCheckbox;
+
+let showStrokes;
 
 let etRowSlider;
 let etColumnSlider;
@@ -27,6 +34,14 @@ function setup()
     canvasEnlargeCoefficientSliderValue = select("#enlarge_value");
 
     randomizeTheTiles = select("#randomize_tiles");
+
+    showSolved = select("#show_solved");
+    showSolvedCheckbox = select("#show_solves_checkbox");
+    showSolved.hide();
+    showSolvedCheckbox.hide();
+    showSolved.mouseOver(() => {isShowSolvedOver = true;});
+    showSolved.mouseOut(() => {isShowSolvedOver = false;});
+    showStrokes = select("#show_strokes");
 
     etRowSlider = select("#et_row");
     etColumnSlider = select("#et_column");
@@ -55,10 +70,7 @@ function whenImageGiven(file)
 }
 
 function draw()
-{
-	tileHeight = tileHeightSlider.value();
-	canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
-	
+{	
     tileHeightSliderValue.html("&nbsp&nbsp" + tileHeightSlider.value());
     canvasEnlargeCoefficientSliderValue.html("&nbsp&nbsp" + (canvasEnlargeCoefficientSlider.value() + canvasEnlargeCoefficientSlider_decimal.value() / 1000) + "&nbsptimes");
     select("#et_row_value").html("&nbsp&nbsp" + etRowSlider.value());
@@ -75,6 +87,9 @@ function draw()
     else if (tiles_array && isImgLoaded)
     {
         background(255, 247, 0);
+
+        showSolved.style("display", "inline");
+        showSolvedCheckbox.style("display", "inline");
 
         tiles_array.updateAndDisplay();
 
@@ -100,6 +115,7 @@ function draw()
         (
             function()
             {
+                tileHeight = tileHeightSlider.value();
                 tiles_array = null;
                 createCanvasForImage();
 
@@ -117,6 +133,7 @@ function draw()
         (
             function()
             {
+	            canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
                 tiles_array = null;
                 createCanvasForImage();
             }
@@ -126,6 +143,7 @@ function draw()
         (
             function()
             {
+            	canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
                 tiles_array = null;
                 createCanvasForImage();
             }
@@ -133,6 +151,9 @@ function draw()
     }
     else
     {
+        tileHeight = tileHeightSlider.value();
+	    canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
+	
         textSize(50);
         textAlign(CENTER, CENTER);
         text("Drop an image to make the puzzle.", 0, 0, height, width * .94);
@@ -146,7 +167,7 @@ function mousePressed()
     {
         console.clear();
 
-        if (!tiles_array.isMoving())
+        if (!tiles_array.isMoving() && !isShowSolvedOver && !showSolvedCheckbox.checked())
         {
             tiles_array.swap();
         }
