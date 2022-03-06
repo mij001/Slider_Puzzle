@@ -14,8 +14,8 @@ let randomizeTheTiles;
 let etRowSlider;
 let etColumnSlider;
 
-let tileHeight; // Default is 100
-let canvasEnlargeCoefficient; // Default is .3
+let tileHeight = 100; // Default is 100
+let canvasEnlargeCoefficient = .3; // Default is .3
 
 function setup()
 {
@@ -30,9 +30,6 @@ function setup()
 
     etRowSlider = select("#et_row");
     etColumnSlider = select("#et_column");
-
-    tileHeight = tileHeightSlider.value();
-    canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + canvasEnlargeCoefficientSlider_decimal.value();
 
     imgFileInput = createFileInput(whenImageGiven, false);
     imgFileInput.parent("image_file_input");
@@ -59,6 +56,9 @@ function whenImageGiven(file)
 
 function draw()
 {
+	tileHeight = tileHeightSlider.value();
+	canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
+	
     tileHeightSliderValue.html("&nbsp&nbsp" + tileHeightSlider.value());
     canvasEnlargeCoefficientSliderValue.html("&nbsp&nbsp" + (canvasEnlargeCoefficientSlider.value() + canvasEnlargeCoefficientSlider_decimal.value() / 1000) + "&nbsptimes");
     select("#et_row_value").html("&nbsp&nbsp" + etRowSlider.value());
@@ -100,8 +100,6 @@ function draw()
         (
             function()
             {
-                tileHeight = tileHeightSlider.value();
-                
                 tiles_array = null;
                 createCanvasForImage();
 
@@ -119,7 +117,6 @@ function draw()
         (
             function()
             {
-                canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
                 tiles_array = null;
                 createCanvasForImage();
             }
@@ -129,7 +126,6 @@ function draw()
         (
             function()
             {
-                canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + (canvasEnlargeCoefficientSlider_decimal.value() + 1) / 1000;
                 tiles_array = null;
                 createCanvasForImage();
             }
