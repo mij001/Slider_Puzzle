@@ -14,15 +14,11 @@ let randomizeTheTiles;
 let etRowSlider;
 let etColumnSlider;
 
-let tileHeight = 70; // Default is 100
-let canvasEnlargeCoefficient = .3; // Default is .3
+let tileHeight; // Default is 100
+let canvasEnlargeCoefficient; // Default is .3
 
 function setup()
 {
-    imgFileInput = createFileInput(whenImageGiven, false);
-    imgFileInput.parent("image_file_input");
-    or_img = select("#or_img");
-
     tileHeightSlider = select("#tile_size");
     tileHeightSliderValue = select("#tile_size_value");
 
@@ -34,6 +30,13 @@ function setup()
 
     etRowSlider = select("#et_row");
     etColumnSlider = select("#et_column");
+
+    tileHeight = tileHeightSlider.value();
+    canvasEnlargeCoefficient = canvasEnlargeCoefficientSlider.value() + canvasEnlargeCoefficientSlider_decimal.value();
+
+    imgFileInput = createFileInput(whenImageGiven, false);
+    imgFileInput.parent("image_file_input");
+    or_img = select("#or_img");
 
     select("#et_possition").hide();
 
@@ -145,7 +148,7 @@ function mousePressed()
 {  
      if (tiles_array)
     {
-        //console.clear();
+        console.clear();
 
         if (!tiles_array.isMoving())
         {
