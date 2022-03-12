@@ -1,3 +1,5 @@
+let hideWhileLoading;
+
 let tiles_array;
 let img;
 let or_img;
@@ -29,6 +31,8 @@ let angle;
 
 function setup()
 {
+    hideWhileLoading = selectAll(".loading");
+    
     tileHeightSlider = select("#tile_size");
     tileHeightSliderValue = select("#tile_size_value");
 
@@ -66,12 +70,20 @@ function setup()
     (
         function ()
         {
+            for (let elmt of hideWhileLoading)
+            {
+                elmt.hide();
+            }
             img = loadImage
             (
                 "./images/mustang69.jpg",
                 function ()
                 {
                     defaultLoading = false;
+                    for (let elmt of hideWhileLoading)
+                    {
+                        elmt.show();
+                    }
                     createCanvasForImage();
                 }
             );
