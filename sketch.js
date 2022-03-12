@@ -109,14 +109,21 @@ function draw()
         push();
         noFill();
         strokeWeight(20);
-        arc(width / 2, height / 2, 300, 300, angle, HALF_PI / 3 + angle);
+        arc(width / 2, height / 2, 300, 300, angle, (HALF_PI / 1.5 + angle));
+        arc(width / 2, height / 2, 300, 300, angle + 2 * PI / 3, (HALF_PI / 1.5 + angle) + 2 * PI / 3);
+        arc(width / 2, height / 2, 300, 300, angle + 4 * PI / 3, (HALF_PI / 1.5 + angle) + 4 * PI / 3);
         pop();
 
-        angle += .02;
+        angle += .04;
         angle = angle % TWO_PI;
 
+        push();
+        textSize(50);
         textAlign(CENTER, CENTER);
+        stroke(0);
+        strokeWeight(.6);
         text("Loading", 0, 0, width, height);
+        pop();
     }
     else if (!tiles_array && isImgLoaded)
     {
