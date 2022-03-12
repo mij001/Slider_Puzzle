@@ -24,10 +24,8 @@ let etColumnSlider;
 let tileHeight = 100; // Default is 100
 let canvasEnlargeCoefficient = .3; // Default is .3
 
-function preload()
-{
-    img = loadImage("./images/mustang69.jpg", createCanvasForImage);
-}
+let defaultLoading;
+let angle;
 
 function setup()
 {
@@ -62,10 +60,23 @@ function setup()
     background(255, 247, 0);
     c.drop(whenImageGiven);
 
+    angle = -1 * PI / 2;
+
     select("#mustang69").mousePressed
     (
         function ()
         {
+            img = loadImage
+            (
+                "./images/mustang69.jpg",
+                function ()
+                {
+                    defaultLoading = false;
+                    createCanvasForImage();
+                }
+            );
+
+            defaultLoading = true;
             select("#default_image").hide();
         }
     );
@@ -91,7 +102,22 @@ function draw()
     select("#et_column_value").html("&nbsp&nbsp" + etColumnSlider.value());
     or_img.hide();
 
-    if (!tiles_array && isImgLoaded)
+    if(defaultLoading)
+    {
+        background(255, 247, 0);
+
+        push();
+        noFill();
+        strokeWeight(20);
+        arc(width / 2, height / 2, 300, 300, angle, HALF_PI / 3 + angle);
+        pop();
+
+        angle += .02;
+
+        textAlign(CENTER, CENTER);
+        text("Loading", 0, 0, width, height);
+    }
+    else if (!tiles_array && isImgLoaded)
     {
         background(255, 247, 0);
 
