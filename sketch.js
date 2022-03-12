@@ -24,6 +24,11 @@ let etColumnSlider;
 let tileHeight = 100; // Default is 100
 let canvasEnlargeCoefficient = .3; // Default is .3
 
+function preload()
+{
+    img = loadImage("./images/mustang69.jpg", createCanvasForImage);
+}
+
 function setup()
 {
     tileHeightSlider = select("#tile_size");
@@ -61,7 +66,6 @@ function setup()
     (
         function ()
         {
-            img = loadImage("./images/mustang69.jpg", createCanvasForImage);
             select("#default_image").hide();
         }
     );
