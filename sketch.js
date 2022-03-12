@@ -113,6 +113,7 @@ function draw()
         pop();
 
         angle += .02;
+        angle = angle % TWO_PI;
 
         textAlign(CENTER, CENTER);
         text("Loading", 0, 0, width, height);
